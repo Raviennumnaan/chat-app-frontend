@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_URL } from '../utils/constants';
 
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 export const signup = async function ({ username, email, password }) {
   const { data } = await axios.post(`${API_URL}/api/auth/signup`, {
