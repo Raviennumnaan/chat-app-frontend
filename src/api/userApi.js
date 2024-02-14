@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { API_URL } from '../utils/constants';
 
+axios.defaults.withCredentials = true;
+
 export const getUser = async function () {
   const { data } = await axios.get(`${API_URL}/api/auth/status`);
 
