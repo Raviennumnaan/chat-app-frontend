@@ -67,7 +67,7 @@ const Message = styled.div`
 
 function ChatRoom() {
   const [searchParams] = useSearchParams();
-  const { conversations, isFetching } = useConversation();
+  const { conversations, isLoading } = useConversation();
   const { user } = useUser();
 
   const chatId = searchParams.get('id');
@@ -79,7 +79,7 @@ function ChatRoom() {
       </Message>
     );
 
-  if (isFetching) return <SecondarySpinner />;
+  if (isLoading) return <SecondarySpinner />;
 
   const friend = conversations
     .find(con => con._id === chatId)

@@ -11,6 +11,9 @@ export function useCreateConversation() {
       createConversationApi(participants, token),
 
     onSuccess: data => {
+      const conversations = queryClient.getQueryData(['conversations']);
+      conversations.push(data);
+      queryClient.setQueryData(['conversations'], conversations);
       queryClient.refetchQueries({ queryKey: ['conversations'] });
       navigate(`/chat?id=${data._id}`);
     },
