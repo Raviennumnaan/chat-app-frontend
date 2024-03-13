@@ -21,8 +21,8 @@ const Span = styled.span`
 `;
 
 function Login() {
-  const [email, setEmail] = useState('siva@gmail.com');
-  const [password, setPassword] = useState('test1234');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { login, isPending } = useLogin();
 
   function handleSubmit(e) {
