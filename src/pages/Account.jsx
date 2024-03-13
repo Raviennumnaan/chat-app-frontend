@@ -35,6 +35,9 @@ const Header = styled.header`
 
   @media only screen and (max-width: 600px) {
     flex-direction: column;
+    .avatar {
+      display: none;
+    }
   }
 `;
 
@@ -86,10 +89,12 @@ function Account() {
             </Link>
             <Heading>Personal Details</Heading>
           </div>
-          <Avatar
-            url={`${user.avatarImage}?apikey=${multiAvatarApiKey}`}
-            size={10}
-          />
+          <div className="avatar">
+            <Avatar
+              url={`${user.avatarImage}?apikey=${multiAvatarApiKey}`}
+              size={10}
+            />
+          </div>
         </Header>
 
         <EditInput
