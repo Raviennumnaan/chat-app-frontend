@@ -35,6 +35,11 @@ const ChatHeader = styled.div`
       color: var(--color-brand-600);
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    padding: 1rem 0.5rem;
+    gap: 2rem;
+  }
 `;
 
 const Main = styled.main`
