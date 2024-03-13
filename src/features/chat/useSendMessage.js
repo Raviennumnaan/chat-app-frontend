@@ -11,7 +11,8 @@ export function useSendMessage() {
   const { user } = useUser();
 
   const { mutate: sendMessage, isPending } = useMutation({
-    mutationFn: ({ chatId, content }) => sendMessageApi(chatId, content),
+    mutationFn: ({ chatId, content, token }) =>
+      sendMessageApi(chatId, content, token),
 
     onSuccess: data => {
       const temp = [...messages, data];

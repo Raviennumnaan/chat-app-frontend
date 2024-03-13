@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_URL } from '../utils/constants';
 
-export const signup = async function ({ username, email, password }) {
+export const signup = async function (username, email, password) {
   const { data } = await axios.post(
     `${API_URL}/api/auth/signup`,
     {
@@ -12,7 +12,7 @@ export const signup = async function ({ username, email, password }) {
     { withCredentials: true }
   );
 
-  return data.data;
+  return { user: data.data, token: data.token };
 };
 
 export const login = async function (email, password) {
@@ -24,8 +24,7 @@ export const login = async function (email, password) {
     },
     { withCredentials: true }
   );
-
-  return data.data;
+  return { user: data.data, token: data.token };
 };
 
 export const logout = async function () {

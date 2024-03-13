@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { IoSend } from 'react-icons/io5';
 import styled from 'styled-components';
 import { useSendMessage } from './useSendMessage';
+import { useToken } from '../../context/TokenContext';
 
 const Form = styled.form`
   display: flex;
@@ -47,6 +48,7 @@ const Button = styled.button`
 function ChatInput() {
   const [message, setMessage] = useState('');
   const [searchParams] = useSearchParams();
+  const { token } = useToken();
   const { sendMessage, isPending } = useSendMessage();
 
   const chatId = searchParams.get('id');
@@ -54,7 +56,7 @@ function ChatInput() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!message) return;
-    sendMessage({ chatId, content: message });
+    sendMessage({ chatId, content: message, token });
     setMessage('');
   }
 

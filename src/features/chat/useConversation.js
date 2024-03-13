@@ -1,11 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import { getConversations } from '../../api/chatApi';
+import { useToken } from '../../context/TokenContext';
 
 export function useConversation() {
-  const { data: conversations, isLoading } = useQuery({
+  const { token } = useToken();
+
+  const {
+    data: conversations,
+    isFetching,
+    isLoading,
+  } = useQuery({
     queryKey: ['conversations'],
-    queryFn: getConversations,
+    queryFn: () => getConversations(token),
   });
 
-  return { conversations, isLoading };
+  return { conversations, isFetching, isLoading };
 }

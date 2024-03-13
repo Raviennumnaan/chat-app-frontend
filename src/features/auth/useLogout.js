@@ -1,18 +1,21 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-
-import { logout as logoutApi } from '../../api/authApi';
+import { useToken } from '../../context/TokenContext';
 
 export function useLogout() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { setToken } = useToken();
+
   const { mutate: logout, isPending } = useMutation({
-    mutationFn: logoutApi,
+    mutationFn: () => {
+      queryClient.removeQueries();
+      setToken(null);
+    },
 
     onSuccess: () => {
       toast.success('Successfully logged out');
-      queryClient.removeQueries();
       navigate('/login');
     },
 

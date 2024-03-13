@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Avatar from '../user/Avatar';
 import { useSearchParams } from 'react-router-dom';
 import { useCreateConversation } from './useCreateConversation';
+import { useToken } from '../../context/TokenContext';
 
 const StyledFriend = styled.li`
   display: flex;
@@ -31,12 +32,13 @@ const Username = styled.p`
 function Friend({ friend }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const chatId = searchParams.get('id');
+  const { token } = useToken();
   const { createConversation } = useCreateConversation();
 
   function handleClick() {
     if (friend.chatId) return setSearchParams({ id: friend.chatId });
 
-    createConversation([friend._id]);
+    createConversation({ participants: [friend._id], token });
   }
 
   return (

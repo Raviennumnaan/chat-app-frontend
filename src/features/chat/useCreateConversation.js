@@ -7,7 +7,8 @@ export function useCreateConversation() {
   const navigate = useNavigate();
 
   const { mutate: createConversation, isPending } = useMutation({
-    mutationFn: createConversationApi,
+    mutationFn: ({ participants, token }) =>
+      createConversationApi(participants, token),
 
     onSuccess: data => {
       queryClient.refetchQueries({ queryKey: ['conversations'] });
