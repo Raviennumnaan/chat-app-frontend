@@ -13,6 +13,10 @@ const Container = styled.div`
   height: 94%;
   grid-template-rows: 100px auto 80px;
   overflow-y: hidden;
+
+  @media only screen and (max-width: 600px) {
+    height: 90%;
+  }
 `;
 
 const ChatHeader = styled.div`
